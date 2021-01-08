@@ -11,7 +11,7 @@ jobs:
         config:
           - {os: windows-latest, r: 'release'}
           - {os: macOS-latest, r: 'release'}
-          - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+ #         - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
     steps:
       - uses: actions/checkout@v2
@@ -19,7 +19,8 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
 
       - name: Install rmarkdown
-        run: Rscript -e 'install.packages("rmarkdown")'
+        run: install.packages("rmarkdown")
+        shell: Rscript {0}
       - name: Render README
-        run: Rscript -e 'rmarkdown::render("test.Rmd", output_format = "md_document")'
-
+        run: rmarkdown::render("test.Rmd", output_format = "md_document")
+        shell: Rscript {0}
