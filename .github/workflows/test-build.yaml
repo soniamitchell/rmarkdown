@@ -19,7 +19,9 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
 
       - name: Install rmarkdown
-        run: install.packages("rmarkdown")
+        run: |
+          install.packages("rmarkdown")
+          install.packages("ggplot2")
         shell: Rscript {0}
       - name: Render README
         run: rmarkdown::render("test.Rmd", output_format = "md_document")
