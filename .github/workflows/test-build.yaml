@@ -23,25 +23,10 @@ jobs:
           - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: r-lib/actions/setup-r@master
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Render document
+        uses: lc5415/rmarkdown-action@v1
         with:
-          r-version: ${{ matrix.config.r }}
-      - uses: r-lib/actions/setup-pandoc@master
-
-      - name: Install dependencies
-        run: |
-          install.packages("rmarkdown")
-        shell: Rscript {0}
-
-      - name: Run RMarkdown
-        run: |
-          rmarkdown::render("test.Rmd")
-        shell: Rscript {0}
-
-      - name: Upload check results
-        if: failure()
-        uses: actions/upload-artifact@main
-        with:
-          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
-          path: check
+          input_file: path/to/my_doc.Rmd
+	  output_format: pdf_document
