@@ -29,4 +29,4 @@ jobs:
         uses: lc5415/rmarkdown-action@v1
         with:
           input_file: test.Rmd
-	  output_format: pdf_document
+	        output_format: pdf_document
