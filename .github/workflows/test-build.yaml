@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  R-CMD-check:
+  render_document:
     runs-on: ${{ matrix.config.os }}
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
